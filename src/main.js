@@ -12,12 +12,16 @@ window.i18n = i18n
 
 /* ------- plugins ------- */   
 
+
+
 /* ------- services ------- */            
 
 import Ls from './services/ls'
 window.Ls = Ls
 
 /* ------- services ------- */   
+
+
 
 /* ------- bootstrap ------- */   
 
