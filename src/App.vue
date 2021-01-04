@@ -26,6 +26,11 @@ export default {
     },
     created() {
         this.lang = window.Ls.get('lang')
+        if (this.lang === 'ar') {
+            document.documentElement.setAttribute('dir', 'rtl')
+        } else {
+            document.documentElement.setAttribute('dir', 'ltr')
+        }
     },
     methods: {
         changeLang () {

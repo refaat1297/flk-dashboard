@@ -1,5 +1,8 @@
 {
     "navigation": {
         "dashboard": "Dashborad en dd"
+    },
+    "aboutUs": {
+        "message": "About us page"
     }
 }

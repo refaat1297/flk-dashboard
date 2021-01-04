@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <h2 class="alert alert-danger">{{ $t('navigation.dashboard', {locale: 'ar'}) }}</h2>
+        <h2 class="alert alert-danger">{{ $t('navigation.dashboard') }}</h2>
     </div>
 </template>
 
