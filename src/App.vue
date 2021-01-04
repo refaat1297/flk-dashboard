@@ -5,9 +5,36 @@
             |
             <router-link to="/about">About</router-link>
         </div>
+        
+        <select class="form-control" v-model="lang" @change="changeLang()">
+            <option value="ar">Ar</option>
+            <option value="en">En</option>
+        </select>
+        
         <router-view/>
     </div>
 </template>
+
+<script>
+
+export default {
+    name: "App",
+    data () {
+        return {
+            lang: null
+        }
+    },
+    created() {
+        this.lang = window.Ls.get('lang')
+    },
+    methods: {
+        changeLang () {
+            window.Ls.set('lang', this.lang)
+            window.location.reload()
+        }
+    }
+}
+</script>
 
 <style lang="scss">
 #app {

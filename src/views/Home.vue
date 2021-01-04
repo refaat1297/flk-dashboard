@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <h2 class="alert alert-danger">{{ $t('navigation.dashboard', { locale: 'ar' }) }}</h2>
+        <h2 class="alert alert-danger">{{ $t('navigation.dashboard', {locale: 'ar'}) }}</h2>
     </div>
 </template>
 
@@ -10,12 +10,9 @@ import HelloWorld from "@/components/HelloWorld.vue";
 
 
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
-  },
-  created () {
-      console.log(localStorage.getItem('lang'))
-  }
+    name: "Home",
+    components: {
+        HelloWorld,
+    }
 };
 </script>
