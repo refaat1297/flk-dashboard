@@ -1,0 +1,75 @@
+
+/* ----- import helpers ----- */
+
+// colors
+@import "helpers/colors";
+
+// fonts
+@import "helpers/fonts";
+
+// mixins
+@import "helpers/mixins";
+
+// buttons
+@import "helpers/buttons";
+
+// headings
+@import "helpers/headings";
+
+/* ----- import helpers ----- */
+
+
+
+body, html {
+    font-family: enRegular, sans-serif;
+    text-align: left;
+    background-color: $bg-gray;
+
+    [dir=rtl] & {
+        font-family: arRegular, sans-serif;
+        text-align: right;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    background-color: #a0aec0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #e5e7eb;
+    cursor: pointer;
+}
+
+
+/* ----- import shared components ----- */
+
+
+
+/* ----- import shared components ----- */
+
+
+
+
+
+/* ----- import plugins ----- */
+
+@import "node_modules/toastr/toastr";
+
+/* ----- import plugins ----- */
+
+
+/* ----- import pages ----- */
+
+// app
+@import "pages/app";
+
+
+
+/* ----- import pages ----- */
+

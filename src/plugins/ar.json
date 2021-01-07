@@ -1,8 +1,25 @@
 {
-    "navigation": {
-        "dashboard": "لوحة التحكم"
+    "body": {
+        "title": "فلك - لوحة التحكم"  
     },
-    "aboutUs": {
-        "message": "صفحة من نحن"
+    "navigation": {
+        "dashboard": "لوحة التحكم",
+        "customers": "العملاء",
+        "items": "المنتجات",
+        "users": "المستخدمين",
+        "reports": "التقارير",
+        "settings": "الإعدادات"
+    },
+    "dashboard": {
+        "dashboardReports": {
+            "title": "بعض التقرير عن متجرك",
+            "customers": "العملاء",
+            "orders": "الطلبات",
+            "products": "المنتجات",
+            "sales": "المبيعات"
+        }
+    },
+    "globals": {
+        "footer": "كل الحقوق محفوظة لـ منصة فلك 2020 ©"
     }
 }

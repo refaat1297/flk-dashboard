@@ -1,8 +1,25 @@
 {
-    "navigation": {
-        "dashboard": "Dashborad en dd"
+    "body": {
+        "title": "Flk - Dashboard"
     },
-    "aboutUs": {
-        "message": "About us page"
+    "navigation": {
+        "dashboard": "dashboard",
+        "customers": "customers",
+        "items": "items",
+        "users": "users",
+        "reports": "reports",
+        "settings": "settings"
+    },
+    "dashboard": {
+        "dashboardReports": {
+            "title": "Some report on your store",
+            "customers": "customers",
+            "orders": "orders",
+            "products": "products",
+            "sales": "sales"
+        }
+    },
+    "globals": {
+        "footer": "All rights reserved. flk 2020 ©"
     }
 }

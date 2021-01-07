@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="108.569" height="125.518" viewBox="0 0 108.569 125.518">
+  <g id="Group_137" data-name="Group 137" transform="translate(-351 -258)">
+    <path id="blob" d="M56.171-16.554c11.553,18.971,16.3,43.171,7.053,62.384C53.86,65.166,30.633,79.637,12.392,76.84-5.971,73.922-19.347,53.735-27.13,35.372c-7.661-18.484-9.85-35.144-3.162-51.2S-8.038-47.442,8.987-48.293,44.5-35.4,56.171-16.554Z" transform="translate(388.277 306.331)" fill="#9485e0" opacity="0.12"/>
+    <g id="credit-cards-payment" transform="translate(466.996 213.92)">
+      <g id="Group_25" data-name="Group 25" transform="translate(-115.996 56.388)">
+        <path id="Path_92" data-name="Path 92" d="M93.163,445.143a.742.742,0,0,0-.91-.515l-2.654.737a.741.741,0,0,0-.515.91l.736,2.653a.741.741,0,0,0,.91.515l2.654-.736a.742.742,0,0,0,.515-.91Z" transform="translate(-59.03 -437.471)" fill="#ffaf5f"/>
+        <g id="credit-card" transform="translate(0 0)">
+          <path id="Path_94" data-name="Path 94" d="M119.217,112.233l6.365-40.639a7.566,7.566,0,0,0-6.268-8.668h0L33.432,49.142a7.563,7.563,0,0,0-8.666,6.268L21.714,74.415V112Z" transform="translate(-17.11 -49.045)" fill="#7868c9"/>
+          <path id="Path_95" data-name="Path 95" d="M156.587,99.963,132.2,96.049c-16.383,25.067-42.866,42.429-63.176,53.009l87.472.212,6.365-40.639a7.566,7.566,0,0,0-6.268-8.668Z" transform="translate(-54.384 -86.082)" fill="#5242a2"/>
+          <path id="Path_96" data-name="Path 96" d="M7.564,159.771h86.98a7.564,7.564,0,0,1,7.564,7.564V216.5a7.564,7.564,0,0,1-7.564,7.564H7.564A7.564,7.564,0,0,1,0,216.5V167.335A7.564,7.564,0,0,1,7.564,159.771Z" transform="translate(0 -136.292)" fill="#9485e0"/>
+          <path id="Path_97" data-name="Path 97" d="M174.314,159.771H172.8c-17.85,31.689-51.2,53.427-71.564,64.29h73.077a7.564,7.564,0,0,0,7.564-7.564V167.335A7.564,7.564,0,0,0,174.314,159.771Z" transform="translate(-79.77 -136.292)" fill="#6555b5"/>
+          <rect id="Rectangle_28" data-name="Rectangle 28" width="18.909" height="15.127" transform="translate(9.454 32.933)" fill="#ffd782"/>
+          <g id="Group_26" data-name="Group 26" transform="translate(9.454 38.606)">
+            <rect id="Rectangle_29" data-name="Rectangle 29" width="5.673" height="3.782" fill="#ffaf5f"/>
+            <rect id="Rectangle_30" data-name="Rectangle 30" width="5.673" height="3.782" transform="translate(13.236)" fill="#ffaf5f"/>
+          </g>
+          <circle id="Ellipse_2" data-name="Ellipse 2" cx="9.454" cy="9.454" r="9.454" transform="translate(73.744 59.406)" fill="#ffd782"/>
+          <circle id="Ellipse_3" data-name="Ellipse 3" cx="9.454" cy="9.454" r="9.454" transform="translate(62.399 59.406)" fill="#ffaf5f"/>
+          <g id="Group_27" data-name="Group 27" transform="translate(7.564 32.933)">
+            <rect id="Rectangle_31" data-name="Rectangle 31" width="11.345" height="3.782" transform="translate(0 28.363)" fill="#fff"/>
+            <rect id="Rectangle_32" data-name="Rectangle 32" width="11.345" height="3.782" transform="translate(18.909 28.363)" fill="#fff"/>
+            <rect id="Rectangle_33" data-name="Rectangle 33" width="11.345" height="3.782" transform="translate(37.817 28.363)" fill="#fff"/>
+            <rect id="Rectangle_34" data-name="Rectangle 34" width="49.163" height="3.782" transform="translate(0 39.708)" fill="#fff"/>
+            <rect id="Rectangle_35" data-name="Rectangle 35" width="3.782" height="7.564" transform="translate(58.617)" fill="#fff"/>
+            <rect id="Rectangle_36" data-name="Rectangle 36" width="3.782" height="7.564" transform="translate(66.181)" fill="#fff"/>
+            <rect id="Rectangle_37" data-name="Rectangle 37" width="3.782" height="7.564" transform="translate(73.744)" fill="#fff"/>
+            <rect id="Rectangle_38" data-name="Rectangle 38" width="3.782" height="7.564" transform="translate(81.307)" fill="#fff"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
