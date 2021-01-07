@@ -1,5 +1,5 @@
 <template>
-    <base-layout>
+    <div>
         <h1>hello from the other side</h1>
         <h1>hello from the other side</h1>
         <h1>hello from the other side</h1>
@@ -46,7 +46,7 @@
         <h1>hello from the other side</h1>
         <h1>hello from the other side</h1>
         <button @click="sayHello()">click</button>
-    </base-layout>
+    </div>
 </template>
 
 <script>

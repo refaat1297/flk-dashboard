@@ -13,6 +13,23 @@ import VueRouter from 'vue-router'
 // home
 import Dashboard from '../views/dashboard/Index'
 
+// customers
+import Customers from '../views/customers/Index'
+
+// items
+import Items from '../views/items/Index'
+
+// users
+import Users from '../views/users/Index'
+
+// reports
+import Reports from '../views/reports/Index'
+
+// settings
+import Settings from '../views/settings/Index'
+
+
+
 
 // -----------------------------------------------------------------------------------------
 
@@ -33,6 +50,31 @@ const routes = [
         path: '/',
         name: 'Dashboard',
         component: Dashboard
+    },
+    {
+        path: '/customers',
+        name: "Customers",
+        component: Customers
+    },
+    {
+        path: "/items",
+        name: "Items",
+        component: Items  
+    },
+    {
+        path: '/users',
+        name: "Users",
+        component: Users
+    },
+    {
+        path: '/reports',
+        name: "Reports",
+        component: Reports
+    },
+    {
+        path: '/settings',
+        name: "Settings",
+        component: Settings
     },
     // {
     //     path: '/about',

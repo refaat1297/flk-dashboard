@@ -18,7 +18,7 @@
 
 /* ----- import helpers ----- */
 
-
+// ------------------------------------------------------ \\
 
 body, html {
     font-family: enRegular, sans-serif;
@@ -46,15 +46,17 @@ body, html {
     cursor: pointer;
 }
 
+// ------------------------------------------------------ \\
+
+/* ----- import shared components ----- */
+
+// base breadcrumbs
+@import "components/layout/base-breadcrumbs";
 
 /* ----- import shared components ----- */
 
 
-
-/* ----- import shared components ----- */
-
-
-
+// ------------------------------------------------------ \\
 
 
 /* ----- import plugins ----- */
@@ -64,10 +66,13 @@ body, html {
 /* ----- import plugins ----- */
 
 
+// ------------------------------------------------------ \\
+
+
 /* ----- import pages ----- */
 
 // app
-@import "pages/app";
+@import "pages/app/app";
 
 
 

@@ -1,0 +1,91 @@
+.base-breadcrumbs {
+    margin-bottom: 1rem;
+    
+    .breadcrumbs-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        
+        h3 {
+            font-family: enBold, sans-serif;
+            font-size: 1.8rem;
+            color: $dark;
+            font-weight: bold;
+            text-transform: capitalize;
+            margin-bottom: .8rem;
+
+            [dir=rtl] & {
+                font-family: arBold, sans-serif;
+            }
+        }
+        
+        a {
+            padding: .5rem 1rem;
+            text-decoration: none;
+            background-color: $blue;
+            border-radius: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            
+            svg {
+                width: 20px;
+                height: 20px;
+                color: $white;
+            }
+            
+            span {
+                font-weight: bold;
+                color: $white;
+                text-transform: capitalize;
+                font-size: .9rem;
+                display: inline-block;
+                margin-left: .3rem;
+                
+                [dir=rtl] & {
+                    margin-left: 0;
+                    margin-right: .3rem;
+                }
+            }
+        }
+    }
+    
+    
+    
+    .list-unstyled {
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 0;
+        
+        li {
+            
+            
+            &:last-of-type {
+                a {
+                    color: $blue;
+                }
+            }
+            
+            span{
+                display: inline-block;
+                margin: 0 .4rem;
+                font-weight: bold;
+            }
+            
+            a {
+                text-transform: capitalize;
+                text-decoration: none;
+                font-family: enMedium, sans-serif;
+                font-weight: 600;   
+                font-size: 1.1rem;
+                color: $gray;
+                
+                [dir=rtl] & {
+                    font-family: arMedium, sans-serif;
+                }
+            }
+        }
+    }
+}

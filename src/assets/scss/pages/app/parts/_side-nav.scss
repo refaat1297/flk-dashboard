@@ -1,0 +1,126 @@
+.side-nav {
+    width: 16rem;
+    background-color: $white;
+    height: 100%;
+    overflow: auto;
+    border-right: 1px solid rgba($gray, .2);
+    position: relative;
+
+    [dir=rtl] & {
+        border-right: 0;
+        border-left: 1px solid rgba($gray, .2);
+    }
+
+    @media (max-width: 767px) {
+        display: none;
+    }
+
+
+    ul {
+        padding: 3rem 0;
+
+        li {
+
+            &.list-divider {
+                padding: 1rem;
+            }
+
+            a {
+                padding: .5rem 1.3rem;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                text-decoration: none;
+                border-left: 4px solid $white;
+
+                [dir=rtl] & {
+                    border-left: 0;
+                    border-right: 4px solid $white;
+                }
+
+                &.router-link-exact-active   {
+                    background-color: $bg-gray;
+                    border-color: $blue;
+
+                    span {
+                        color: $blue;
+                    }
+                }
+
+                svg {
+                    width: 22px;
+                    height: 22px;
+                    color: $gray;
+                    margin-bottom: 0;
+                }
+
+                span {
+                    text-transform: capitalize;
+                    font-family: enMedium, sans-serif;
+                    display: inline-block;
+                    margin-left: 1rem;
+                    font-size: 1rem;
+                    color: $dark;
+                    font-weight: 600;
+
+                    [dir=rtl] & {
+                        font-family: arMedium, sans-serif;
+                        margin-left: 0;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .options {
+        padding: .5rem 1.3rem;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+
+        .option {
+            border: 1px dashed $gray;
+            border-radius: 7px;
+            width: 60px;
+            height: 40px;
+            padding: .3rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+
+            &:hover {
+                background-color: $bg-gray;
+            }
+
+            svg {
+                width: 22px;
+                height: 22px;
+                color: $gray;
+                margin-bottom: 0;
+            }
+
+            span {
+                text-transform: capitalize;
+                font-family: enMedium, sans-serif;
+                display: inline-block;
+                margin-left: .4rem;
+                font-size: 1rem;
+                color: $blue;
+                font-weight: 600;
+
+                [dir=rtl] & {
+                    font-family: arMedium, sans-serif;
+                    margin-left: 0;
+                    margin-right: .4rem;
+                }
+            }
+        }
+    }
+}

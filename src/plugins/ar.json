@@ -1,6 +1,7 @@
 {
     "body": {
-        "title": "فلك - لوحة التحكم"  
+        "title": "فلك - لوحة التحكم",
+        "home": "الرئيسية"
     },
     "navigation": {
         "dashboard": "لوحة التحكم",
@@ -17,6 +18,12 @@
             "orders": "الطلبات",
             "products": "المنتجات",
             "sales": "المبيعات"
+        }
+    },
+    "items": {
+        "listPage": {
+            "title": "المنتجات",
+            "addBtn": "إضافة منتج"
         }
     },
     "globals": {

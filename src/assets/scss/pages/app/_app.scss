@@ -1,0 +1,17 @@
+#app {
+    position: relative;
+    
+    @import "./parts/top-header";
+    
+    .page-content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        height: calc(100vh - 80px);
+        overflow: auto;
+        
+        @import "parts/side-nav";
+        
+        @import "parts/content";
+    }
+}

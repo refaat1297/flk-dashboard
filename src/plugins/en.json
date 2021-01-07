@@ -1,6 +1,7 @@
 {
     "body": {
-        "title": "Flk - Dashboard"
+        "title": "Flk - Dashboard",
+        "home": "home"
     },
     "navigation": {
         "dashboard": "dashboard",
@@ -17,6 +18,12 @@
             "orders": "orders",
             "products": "products",
             "sales": "sales"
+        }
+    },
+    "items": {
+        "listPage": {
+            "title": "items",
+            "addBtn": "add item"
         }
     },
     "globals": {
