@@ -57,6 +57,13 @@
                         </router-link>
                     </li>
                 </ul>
+                
+                <div class="options">
+                    <div class="option" @click="changeLang()">
+                        <TranslateIcon />
+                        <span>{{ lang === 'en' ? 'ar' : 'en' }}</span>
+                    </div>
+                </div>
             </nav>
 
             <div class="content">
@@ -77,9 +84,10 @@ import StarIcon from "./components/icons/StarIcon";
 import UsersIcon from "./components/icons/UsersIcon";
 import ChartIcon from "./components/icons/ChartIcon";
 import SettingsIcon from "./components/icons/SettingsIcon";
+import TranslateIcon from "./components/icons/TranslateIcon";
 export default {
     name: "App",
-    components: {SettingsIcon, ChartIcon, UsersIcon, StarIcon, UserIcon, HomeIcon, TheSiteFooter},
+    components: {TranslateIcon, SettingsIcon, ChartIcon, UsersIcon, StarIcon, UserIcon, HomeIcon, TheSiteFooter},
     data () {
         return {
             lang: null
@@ -101,7 +109,8 @@ export default {
             document.title = title
         },
         changeLang () {
-            window.Ls.set('lang', this.lang)
+            let lang = this.lang === 'en' ? 'ar' : 'en'
+            window.Ls.set('lang', lang)
             window.location.reload()
         }
     }
