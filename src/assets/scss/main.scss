@@ -62,6 +62,12 @@ body, html {
 /* ----- import plugins ----- */
 
 @import "node_modules/toastr/toastr";
+#toast-container > div {
+    opacity: 1 !important;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 1rem;
+}
 //@import "node_modules/vue-multiselect/dist/vue-multiselect.min.css";
 
 /* ----- import plugins ----- */

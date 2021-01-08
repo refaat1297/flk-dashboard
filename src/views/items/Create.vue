@@ -6,28 +6,28 @@
                     <form @submit.prevent="addNewItem()">
                         <div class="form-group">
                             <label for="item_name">
-                                <span class="title">name</span>
+                                <span class="title">{{ $t('items.createPage.form.name') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input id="item_name" v-model="newItem.name" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="item_price">
-                                <span class="title">price</span>
+                                <span class="title">{{ $t('items.createPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input id="item_price" v-model.number="newItem.price" type="text" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class="typo__label">
-                                <span class="title">unit</span>
+                                <span class="title">{{ $t('items.createPage.form.unit') }}</span>
                             </label>
                             <multiselect 
                                 v-model="newItem.unit.value" 
                                 :options="newItem.unit.options"
                                 :custom-label="nameWithLang"
                                 :allow-empty="false"
-                                placeholder="Select unit" 
+                                :placeholder="$t('items.createPage.form.select')" 
                                 label="name" 
                                 track-by="name"
                             />
@@ -35,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="item_description">
-                                <span class="title">description</span>
+                                <span class="title">{{ $t('items.createPage.form.description') }}</span>
                             </label>
                             <textarea id="item_description" v-model="newItem.description" type="text" class="form-control" rows="3"></textarea>
                         </div>
@@ -45,7 +45,7 @@
                                 <span class="sr-only">Loading...</span>
                             </div>
                             <SaveIcon v-else />
-                            <span>save item</span>
+                            <span>{{ $t('items.createPage.form.save') }}</span>
                         </button>
                     </form>
                 </div>
@@ -96,18 +96,18 @@ export default {
         addNewItem () {
             console.log(this.newItem)
             this.loading = true
-            
+
             
             
             return addToCollection('items', this.newItem).then(response => {
-                
+
                 this.$router.push({
                     name: "Items"
                 })
                 this.loading = false
-                window.toastr.success('item added successfully')
+                window.toastr.success(this.$t('items.createPage.form.successMsg'))
             }).catch(err => {
-                window.toastr.error(err)
+                window.toastr.error(this.$t('items.createPage.form.errorMsg'))
             })
         }
     }

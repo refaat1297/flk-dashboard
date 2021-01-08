@@ -26,7 +26,17 @@
             "addBtn": "إضافة منتج"
         },
         "createPage": {
-            "title": "منتج جديد"
+            "title": "منتج جديد",
+            "form": {
+                "name": "الإسم",
+                "price": "السعر",
+                "unit": "الوحدة",
+                "select": "إختر وحدة",
+                "description": "الوصف",
+                "save": "حفظ العنصر",
+                "successMsg": "تمت إضافة العنصر بنجاح",
+                "errorMsg": "حدث خطأ.."
+            }
         }
     },
     "globals": {

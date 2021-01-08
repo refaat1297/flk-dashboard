@@ -26,7 +26,17 @@
             "addBtn": "add item"
         },
         "createPage": {
-            "title": "new item"
+            "title": "new item",
+            "form": {
+                "name": "name",
+                "price": "price",
+                "unit": "unit",
+                "select": "select unit",
+                "description": "description",
+                "save": "save item",
+                "successMsg": "item added successfully..",
+                "errorMsg": "an error occurred"
+            }
         }
     },
     "globals": {

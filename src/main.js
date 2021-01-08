@@ -30,10 +30,23 @@ window.i18n = i18n
 
 window.toastr = require('toastr')
 window.toastr.options.progressBar = true;
-window.toastr.options.hideDuration = 600;
+// window.toastr.options.showDuration = 1000;
+// window.toastr.options.hideDuration = 1000;
+// window.toastr.options.timeOut = 5000;
+// window.toastr.options.extendedTimeOut = 2000;
+// toastr.options.extendedTimeOut = 10;
+// window.toastr.options = {
+//     "showEasing": "swing",
+//     "hideEasing": "linear",
+//     "showMethod": "fadeIn",
+//     "hideMethod": "fadeOut"
+// }
+
 
 if (window.Ls.get('lang') === 'ar') {
-    toastr.options.rtl = true;
+    window.toastr.options.rtl = true;
+    window.toastr.options.positionClass = 'toast-top-left';
+    
 }
 
 /* ------- plugins ------- */
