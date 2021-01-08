@@ -24,6 +24,9 @@
         "listPage": {
             "title": "المنتجات",
             "addBtn": "إضافة منتج"
+        },
+        "createPage": {
+            "title": "منتج جديد"
         }
     },
     "globals": {

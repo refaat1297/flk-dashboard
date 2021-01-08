@@ -52,6 +52,10 @@ import './assets/scss/main.scss'
 
 /* ------- global components ------- */
 
+import Multiselect from "vue-multiselect";
+import 'vue-multiselect/dist/vue-multiselect.min.css'
+Vue.component('multiselect', Multiselect)
+
 import BaseLayout from "./layouts/BaseLayout";
 Vue.component('base-layout', BaseLayout)
 

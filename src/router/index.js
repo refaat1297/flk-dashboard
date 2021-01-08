@@ -18,6 +18,7 @@ import Customers from '../views/customers/Index'
 
 // items
 import Items from '../views/items/Index'
+import CreateNewItem from '../views/items/Create'
 
 // users
 import Users from '../views/users/Index'
@@ -56,11 +57,20 @@ const routes = [
         name: "Customers",
         component: Customers
     },
+    
+    // items
     {
         path: "/items",
         name: "Items",
         component: Items  
     },
+    {
+        path: "/items/create",
+        name: "CreateNewItem",
+        component: CreateNewItem
+    },
+    
+    // users
     {
         path: '/users',
         name: "Users",

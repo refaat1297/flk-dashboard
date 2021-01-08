@@ -24,6 +24,9 @@
         "listPage": {
             "title": "items",
             "addBtn": "add item"
+        },
+        "createPage": {
+            "title": "new item"
         }
     },
     "globals": {

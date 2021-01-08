@@ -19,8 +19,8 @@ export default {
             ],
             actionLink: {
                 title: this.$t('items.listPage.addBtn'),
-                link: "/add"
-            }
+                link: "/create"
+            }   
         }
     }
 }

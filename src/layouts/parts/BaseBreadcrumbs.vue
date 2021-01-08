@@ -14,7 +14,7 @@
             </li>
             <li v-if="links" v-for="link in links" :key="link.title">
                 <span>/</span>
-                <router-link :to="link">{{ link.title }}</router-link>
+                <router-link :to="link.link">{{ link.title }}</router-link>
             </li>
         </ul>
     </nav>

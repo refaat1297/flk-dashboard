@@ -1,0 +1,41 @@
+.app-btn {
+    padding: .5rem 1rem;
+    text-decoration: none;
+    background-color: $blue;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    outline: none;
+    border: 1px solid $blue;
+    
+    &:focus {
+        outline: none;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+        color: $white;
+    }
+
+    span {
+        font-weight: bold;
+        color: $white;
+        text-transform: capitalize;
+        font-size: .9rem;
+        display: inline-block;
+        margin-left: .3rem;
+
+        [dir=rtl] & {
+            margin-left: 0;
+            margin-right: .3rem;
+        }
+    }
+
+    .spinner-border {
+        width: 15px;
+        height: 15px;
+        border-width: 2px;
+    }
+}
