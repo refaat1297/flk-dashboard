@@ -7,7 +7,7 @@ import store from './store'
 
 /* ------- vue validate ------- */
 
-import Vuelidate from "vuelidate/src";
+import Vuelidate from "vuelidate";
 Vue.use(Vuelidate)
 
 /* ------- vue validate ------- */

@@ -9,14 +9,23 @@
                                 <span class="title">{{ $t('items.createPage.form.name') }}</span>
                                 <span class="required">*</span>
                             </label>
-                            <input id="item_name" v-model="newItem.name" type="text" class="form-control">
+                            <input 
+                                id="item_name" 
+                                v-model.trim="newItem.name" 
+                                type="text" 
+                                class="form-control" 
+                            >
                         </div>
                         <div class="form-group">
                             <label for="item_price">
                                 <span class="title">{{ $t('items.createPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
-                            <input id="item_price" v-model.number="newItem.price" type="text" class="form-control">
+                            <input 
+                                id="item_price" 
+                                v-model.number.trim="newItem.price" 
+                                type="text" class="form-control"
+                            >
                         </div>
                         <div class="form-group">
                             <label class="typo__label">
@@ -37,7 +46,7 @@
                             <label for="item_description">
                                 <span class="title">{{ $t('items.createPage.form.description') }}</span>
                             </label>
-                            <textarea id="item_description" v-model="newItem.description" type="text" class="form-control" rows="3"></textarea>
+                            <textarea id="item_description" v-model.trim="newItem.description" type="text" class="form-control" rows="3"></textarea>
                         </div>
                         
                         <button class="app-btn">
@@ -57,6 +66,7 @@
 <script>
 import SaveIcon from "../../components/icons/SaveIcon";
 import {addToCollection} from "../../firebase/methods/firestore";
+import {required, minLength, maxLength, between} from 'vuelidate/lib/validators'
 
 export default {
     name: "CreateNewItem",
@@ -76,7 +86,7 @@ export default {
             ],
             newItem: {
                 name: null,
-                price: 0,
+                price: null,
                 unit: {
                     value: {name: ''},
                     options: [
@@ -84,9 +94,15 @@ export default {
                         {name: 'cm'}
                     ]
                 },
-                description: null
+                description: null,
+                submitStatus: null
             },
             loading: false
+        }
+    },
+    computed: {
+        makeURL () {
+            return this.newItem.name.split(' ').join('-')
         }
     },
     methods: {
@@ -94,13 +110,15 @@ export default {
             return name
         },
         addNewItem () {
-            console.log(this.newItem)
             this.loading = true
 
+            let allItemData = {
+                ...this.newItem,
+                url: this.makeURL,
+                addedOn: Date.now()
+            }
             
-            
-            return addToCollection('items', this.newItem).then(response => {
-
+            return addToCollection('items', allItemData).then(response => {
                 this.$router.push({
                     name: "Items"
                 })
@@ -109,6 +127,10 @@ export default {
             }).catch(err => {
                 window.toastr.error(this.$t('items.createPage.form.errorMsg'))
             })
+            
+            
+            
+            
         }
     }
 }

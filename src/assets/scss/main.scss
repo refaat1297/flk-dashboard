@@ -21,12 +21,12 @@
 // ------------------------------------------------------ \\
 
 body, html {
-    font-family: enRegular, sans-serif;
+    font-family: enRegular, arRegular, sans-serif;
     text-align: left;
     background-color: $bg-gray;
 
     [dir=rtl] & {
-        font-family: arRegular, sans-serif;
+        font-family: arRegular, enRegular, sans-serif;
         text-align: right;
     }
 }

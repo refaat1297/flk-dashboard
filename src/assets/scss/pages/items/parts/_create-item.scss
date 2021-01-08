@@ -33,7 +33,18 @@
             }
             
             .form-control {
+                border-color: $gray;
                 
+                &:focus {
+                    box-shadow: 0 0 0 transparent;
+                    border-color: $blue;
+                }
+            }
+            
+            small {
+                color: $red;
+                text-transform: capitalize;
+                font-weight: 600;
             }
         }
         
