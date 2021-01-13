@@ -23,7 +23,13 @@
     "items": {
         "listPage": {
             "title": "items",
-            "addBtn": "add item"
+            "addBtn": "add item",
+            "name": "name",
+            "price": "price",
+            "unit": "unit",
+            "addedOn": "added on",
+            "editBtn": "edit",
+            "deleteBtn": "delete"
         },
         "createPage": {
             "title": "new item",

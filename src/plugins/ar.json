@@ -23,7 +23,13 @@
     "items": {
         "listPage": {
             "title": "المنتجات",
-            "addBtn": "إضافة منتج"
+            "addBtn": "إضافة منتج",
+            "name": "الإسم",
+            "price": "السعر",
+            "unit": "الوحدة",
+            "addedOn": "وقت الإضافة",
+            "editBtn": "تعديل",
+            "deleteBtn": "حذف"
         },
         "createPage": {
             "title": "منتج جديد",

@@ -10,33 +10,21 @@
         <template v-else>
             <div class="items-list">
                 <div class="container-fluid">
-                    <div class="head">
-                        <div class="row">
+                    <div class="head d-none d-lg-block">
+                        <div class="row no-gutters">
                             <div class="col-12 col-sm-6 col-md-3">
-                                <div class="item-name">
-                                    <router-link to="/">Maiya McKenzie</router-link>
-                                </div>
+                                <div class="item-name">{{ $t('items.listPage.name') }}</div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="item-unit">
-                                    Darrin Barrows
-                                </div>
+                            <div class="col-6 col-sm-6 col-lg-3">
+                                <div class="item-unit">{{ $t('items.listPage.unit') }}</div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-2">
-                                <div class="item-price">
-                                    $ 42.13
-                                </div>
+                            <div class="col-6 col-sm-6 col-lg-2">
+                                <div class="item-price">{{ $t('items.listPage.price') }}</div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="item-added-on">
-                                    2021/01/13
-                                </div>
+                            <div class="col-6 col-sm-6 col-lg-3">
+                                <div class="item-added-on">{{ $t('items.listPage.addedOn') }}</div>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-1">
-                                <div class="item-options">
-                                    options
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     

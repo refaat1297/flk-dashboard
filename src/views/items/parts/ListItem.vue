@@ -1,19 +1,30 @@
 <template>
     <div class="list">
-        <div class="row align-items-center">
+        <div class="row align-items-center no-gutters">
             <div class="col-6 col-sm-6 col-lg-3">
                 <div class="item-name">
+                    <span class="d-block d-lg-none">{{ $t('items.listPage.name') }}</span>
                     <router-link :to="'/items/' + item.url + '/edit'" class="text-decoration-none">{{ item.name }}</router-link>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-3">
-                <div class="item-unit">{{ item.unit.value.name }}</div>
+                
+                <div class="item-unit">
+                    <span class="d-block d-lg-none">{{ $t('items.listPage.unit') }}</span>
+                    {{ item.unit.value.name }}
+                </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-2">
-                <div class="item-price">${{ item.price }}</div>
+                <div class="item-price">
+                    <span class="d-block d-lg-none">{{ $t('items.listPage.price') }}</span>
+                    ${{ item.price }}
+                </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-3">
-                <div class="item-added-on">{{ item.addedOn | formatDate }}</div>
+                <div class="item-added-on">
+                    <span class="d-block d-lg-none">{{ $t('items.listPage.addedOn') }}</span>
+                    {{ item.addedOn | formatDate }}
+                </div>
             </div>
             <div class="item-options">
                 <div class="options-btn">
@@ -23,13 +34,13 @@
                     <li>
                         <router-link class="text-decoration-none list-item-content" :to="'/items/' + item.url + '/edit'">
                             <EditIcon />
-                            <span>edit</span>
+                            <span>{{ $t('items.listPage.editBtn') }}</span>
                         </router-link>
                     </li>
                     <li>
                         <div class="list-item-content" @click="deleteItem()">
                             <DeleteIcon />
-                            <span>delete</span>
+                            <span>{{ $t('items.listPage.deleteBtn') }}</span>
                         </div>
                     </li>
                 </ul>
