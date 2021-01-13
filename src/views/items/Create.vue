@@ -117,6 +117,7 @@ export default {
                 url: this.makeURL,
                 addedOn: Date.now()
             }
+            delete allItemData.submitStatus
             
             return addToCollection('items', allItemData).then(response => {
                 this.$router.push({

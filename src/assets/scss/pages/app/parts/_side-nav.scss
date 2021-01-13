@@ -41,6 +41,10 @@
                 &.router-link-exact-active   {
                     background-color: $bg-gray;
                     border-color: $blue;
+                    
+                    svg {
+                        color: $blue;
+                    }
 
                     span {
                         color: $blue;

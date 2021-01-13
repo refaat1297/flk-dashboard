@@ -8,33 +8,52 @@
             <span class="sr-only">Loading...</span>
         </div>
         <template v-else>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">name</th>
-                        <th scope="col">unit</th>
-                        <th scope="col">price</th>
-                        <th scope="col">added on</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="item in items" :key="item.id">
-                        <th scope="row">{{ item.name }}</th>
-                        <td>{{ item.unit.value.name }}</td>
-                        <td>{{ item.price }}</td>
-                        <td>{{ item.description }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="items-list">
+                <div class="container-fluid">
+                    <div class="head">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <div class="item-name">
+                                    <router-link to="/">Maiya McKenzie</router-link>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <div class="item-unit">
+                                    Darrin Barrows
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-2">
+                                <div class="item-price">
+                                    $ 42.13
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <div class="item-added-on">
+                                    2021/01/13
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-1">
+                                <div class="item-options">
+                                    options
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <ListItem v-for="item in items" :key="item.id" :item="item" @deleteItem="deleteItem" />
+                </div>
+            </div>
         </template>
     </base-layout>
 </template>
 
 <script>
-import {getCollection} from "../../firebase/methods/firestore";
+import {getCollection, deleteFromCollection} from "../../firebase/methods/firestore";
+import ListItem from "./parts/ListItem";
 
 export default {
     name: "Items",
+    components: {ListItem},
     data() {
         return {
             pageTitle: this.$t('items.listPage.title'),
@@ -67,6 +86,14 @@ export default {
         }).catch(err => {
             window.toastr.error(err)
         })
+    },
+    methods: {
+        deleteItem (id) {
+            return deleteFromCollection('items', id).then(() => {
+                this.items = this.items.filter(item => id !== item.id)
+                window.toastr.success("item deleted successfully")
+            }).catch(err => window.toastr.error(err))
+        }
     }
 }
 </script>

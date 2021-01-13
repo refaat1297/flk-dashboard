@@ -1,0 +1,137 @@
+.items-list {
+    
+    
+    .list {
+        background-color: $white;
+        padding: 1.7rem 1rem;
+        //border-radius: 5px;
+        margin-top: 1.2rem;
+        transition: all .2s ease-in-out;
+        position: relative;
+        
+        @media (max-width: 991px) {
+            padding-top: 2rem;
+        }
+        
+        &:hover {
+            box-shadow: 0 4px 8px rgba($gray, .7);
+        }
+        
+        .item-name {
+            a {
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                font-size: 1.1rem;
+                color: $blue;
+                font-weight: 600;
+            }
+        }
+        
+        .item-unit {
+            font-size: 1rem;
+            font-family: enExtraLight, sans-serif;
+            font-weight: bold;
+
+            [dir=rtl] & {
+                font-family: arExtraLight, sans-serif;
+            }
+        }
+        
+        .item-price {
+            font-size: 1rem;
+            font-family: enExtraLight, sans-serif;
+            font-weight: bold;
+            
+            [dir=rtl] & {
+                font-family: arExtraLight, sans-serif;
+            }
+        }
+        
+        .item-added-on {
+            font-size: 1rem;
+            font-family: enExtraLight, sans-serif;
+            font-weight: bold;
+
+            [dir=rtl] & {
+                font-family: arExtraLight, sans-serif;
+            }
+        }
+        
+        .item-options {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            
+            @media (max-width: 991px) {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .options-btn {
+                z-index: 5;
+                
+                svg {
+                    color: $gray;
+                    width: 30px;
+                    height: 30px;
+                    cursor: pointer;
+                }
+            }
+            
+            .options-list {
+                margin: 0;
+                position: absolute;
+                right: 9px;
+                top: 30px;
+                display: block;
+                padding: .5rem;
+                width: 130px;
+                border-radius: 5px;
+                background-color: $white;
+                box-shadow: 0 4px 10px $gray;
+                z-index: 8;
+                opacity: 0;
+                visibility: hidden;
+                transition: all .1s ease-in-out;
+                
+                &.show-options-list {
+                    opacity: 1;
+                    visibility: visible;
+                }
+                
+                .list-item-content {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: .5rem;
+                    transition: all .2s ease-in-out;
+                    cursor: pointer;
+                    
+                    &:hover {
+                        background-color: rgba($gray, .2);
+                    }
+                    
+                    span {
+                        color: $dark;
+                        font-size: .9rem;
+                        text-transform: capitalize;
+                        font-weight: 600;
+                    }
+                    
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                        color: $gray;
+                    }    
+                }
+                
+                
+            }
+        }
+    }
+}
