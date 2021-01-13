@@ -37,6 +37,19 @@
                 "successMsg": "item added successfully..",
                 "errorMsg": "an error occurred"
             }
+        },
+        "editPage": {
+            "title": "edit item",
+            "form": {
+                "name": "name",
+                "price": "price",
+                "unit": "unit",
+                "select": "select unit",
+                "description": "description",
+                "save": "update item",
+                "successMsg": "item edited successfully..",
+                "errorMsg": "an error occurred"
+            }
         }
     },
     "globals": {

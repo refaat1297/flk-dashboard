@@ -37,6 +37,19 @@
                 "successMsg": "تمت إضافة العنصر بنجاح",
                 "errorMsg": "حدث خطأ.."
             }
+        },
+        "editPage": {
+            "title": "تعديل منتج",
+            "form": {
+                "name": "الإسم",
+                "price": "السعر",
+                "unit": "الوحدة",
+                "select": "إختر وحدة",
+                "description": "الوصف",
+                "save": "تعديل العنصر",
+                "successMsg": "تم تعديل العنصر بنجاح..",
+                "errorMsg": "حدث خطأ.."
+            }
         }
     },
     "globals": {

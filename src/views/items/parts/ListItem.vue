@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-6 col-sm-6 col-lg-3">
                 <div class="item-name">
-                    <router-link to="/" class="text-decoration-none">{{ item.name }}</router-link>
+                    <router-link :to="'/items/' + item.url + '/edit'" class="text-decoration-none">{{ item.name }}</router-link>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-3">
@@ -21,7 +21,7 @@
                 </div>
                 <ul class="list-unstyled options-list" :class="{'show-options-list': showList}">
                     <li>
-                        <router-link class="text-decoration-none list-item-content" to="/edit">
+                        <router-link class="text-decoration-none list-item-content" :to="'/items/' + item.url + '/edit'">
                             <EditIcon />
                             <span>edit</span>
                         </router-link>

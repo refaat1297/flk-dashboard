@@ -19,6 +19,7 @@ import Customers from '../views/customers/Index'
 // items
 import Items from '../views/items/Index'
 import CreateNewItem from '../views/items/Create'
+import EditItem from "../views/items/Edit";
 
 // users
 import Users from '../views/users/Index'
@@ -68,6 +69,11 @@ const routes = [
         path: "/items/create",
         name: "CreateNewItem",
         component: CreateNewItem
+    },
+    {
+        path: "/items/:url/edit",
+        name: "EditItem",
+        component: EditItem
     },
     
     // users
