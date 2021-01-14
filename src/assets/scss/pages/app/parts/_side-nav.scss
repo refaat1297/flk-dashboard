@@ -5,16 +5,29 @@
     overflow: auto;
     border-right: 1px solid rgba($gray, .2);
     position: relative;
-
+    z-index: 7;
+    transition: all .3s ease-in-out;
+    
     [dir=rtl] & {
         border-right: 0;
         border-left: 1px solid rgba($gray, .2);
     }
 
     @media (max-width: 767px) {
-        display: none;
+        //display: none;
+        position: fixed;
+        z-index: 7;
+        width: 14rem;
+        left: -14rem;
     }
-
+    
+    &.show-small-nav {
+        @media (max-width: 767px) {
+            //display: none;
+            left: 0;
+        }
+    }
+    
 
     ul {
         padding: 3rem 0;

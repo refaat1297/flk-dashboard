@@ -5,5 +5,21 @@
     padding: .4rem 1rem;
     position: relative;
     height: 65px;
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .app-name {
+        a {
+            text-transform: capitalize;
+            font-family: enSemiBold, sans-serif;
+            font-size: 1.7rem;
+            display: inline-block;
+            color: $white;
+            
+            [dir=rtl] & {
+                font-family: arSemiBold, sans-serif;
+            }
+        }
+    }
 }

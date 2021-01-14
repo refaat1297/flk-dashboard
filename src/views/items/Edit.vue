@@ -28,8 +28,8 @@
                                 v-model.number.trim="$v.newItem.price.$model"
                                 type="text" class="form-control"
                             >
-                            <p class="error" v-if="!$v.newItem.price.required">Field is required</p>
-                            <p class="error" v-if="!$v.newItem.price.between">Must be between {{$v.newItem.price.$params.between.min}} and {{$v.newItem.price.$params.between.max}}</p>
+                            <p class="error" v-if="!$v.newItem.price.required">{{ $t('items.createPage.form.priceMessages.required') }}</p>
+                            <p class="error" v-if="!$v.newItem.price.between">{{ $t('items.createPage.form.priceMessages.between', {min: $v.newItem.price.$params.between.min, max: $v.newItem.price.$params.between.max}) }}</p>
                         </div>
                         <div class="form-group">
                             <label class="typo__label">

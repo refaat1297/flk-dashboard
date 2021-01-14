@@ -1,72 +1,12 @@
 <template>
     <div id="app">
-<!--        <label>-->
-<!--            <select class="form-control" v-model="lang" @change="changeLang()">-->
-<!--                <option value="ar">Ar</option>-->
-<!--                <option value="en">En</option>-->
-<!--            </select>-->
-<!--        </label>-->
-        <div class="top-header">
-            <h1>top header</h1>  
-        </div>
+        <TheTopHeader @openNav="showSmallNav = !showSmallNav" />
         
         <div class="page-content">
-            <nav class="side-nav">
-                <ul class="list-unstyled">
-                    <li>
-                        <router-link :to="{name: 'Dashboard'}" class="active">
-                            <HomeIcon />
-                            <span>{{ $t('navigation.dashboard') }}</span>
-                        </router-link>
-                    </li>
-
-                    <li>
-                        <router-link :to="{name: 'Customers'}">
-                            <UserIcon />
-                            <span>{{ $t('navigation.customers') }}</span>
-                        </router-link>
-                    </li>
-
-                    <li>
-                        <router-link :to="{name: 'Items'}">
-                            <StarIcon />
-                            <span>{{ $t('navigation.items') }}</span>
-                        </router-link>
-                    </li>
-
-                    <li class="list-divider"></li>
-                    
-                    <li>
-                        <router-link :to="{name: 'Users'}">
-                            <UsersIcon />
-                            <span>{{ $t('navigation.users') }}</span>
-                        </router-link>
-                    </li>
-
-                    <li>
-                        <router-link :to="{name: 'Reports'}">
-                            <ChartIcon />
-                            <span>{{ $t('navigation.reports') }}</span>
-                        </router-link>
-                    </li>
-
-                    <li>
-                        <router-link :to="{name: 'Settings'}">
-                            <SettingsIcon />
-                            <span>{{ $t('navigation.settings') }}</span>
-                        </router-link>
-                    </li>
-                </ul>
-                
-                <div class="options">
-                    <div class="option" @click="changeLang()">
-                        <TranslateIcon />
-                        <span>{{ lang === 'en' ? 'ar' : 'en' }}</span>
-                    </div>
-                </div>
-            </nav>
+            <TheSideNav :lang="lang" @changeLang="changeLang()" :showSmallNav="showSmallNav" />
 
             <div class="content">
+                <div class="content-overlay" @click="showSmallNav = !showSmallNav" :class="{'show-content-overlay': showSmallNav}"></div>
                 <router-view />
             </div>
         </div>
@@ -78,19 +18,16 @@
 <script>
 
 import TheSiteFooter from "./components/shared/TheSiteFooter";
-import HomeIcon from "./components/icons/HomeIcon";
-import UserIcon from "./components/icons/UserIcon";
-import StarIcon from "./components/icons/StarIcon";
-import UsersIcon from "./components/icons/UsersIcon";
-import ChartIcon from "./components/icons/ChartIcon";
-import SettingsIcon from "./components/icons/SettingsIcon";
-import TranslateIcon from "./components/icons/TranslateIcon";
+import TheSideNav from "./components/shared/TheSideNav";
+import TheTopHeader from "./components/shared/TheTopHeader";
+
 export default {
     name: "App",
-    components: {TranslateIcon, SettingsIcon, ChartIcon, UsersIcon, StarIcon, UserIcon, HomeIcon, TheSiteFooter},
+    components: {TheTopHeader, TheSideNav, TheSiteFooter},
     data () {
         return {
-            lang: null
+            lang: null,
+            showSmallNav: false
         }
     },
     created() {
