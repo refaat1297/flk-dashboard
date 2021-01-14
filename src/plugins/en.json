@@ -29,7 +29,8 @@
             "unit": "unit",
             "addedOn": "added on",
             "editBtn": "edit",
-            "deleteBtn": "delete"
+            "deleteBtn": "delete",
+            "deleteMsg": "item deleted successfully.." 
         },
         "createPage": {
             "title": "new item",

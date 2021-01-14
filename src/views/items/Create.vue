@@ -4,28 +4,32 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-xl-6">
                     <form @submit.prevent="addNewItem()">
-                        <div class="form-group">
+                        <div class="form-group" :class="{ 'form-group--error': $v.newItem.name.$error }">
                             <label for="item_name">
                                 <span class="title">{{ $t('items.createPage.form.name') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input 
                                 id="item_name" 
-                                v-model.trim="newItem.name" 
+                                v-model.trim="$v.newItem.name.$model" 
                                 type="text" 
                                 class="form-control" 
                             >
+                            <p class="error" v-if="!$v.newItem.name.required">Field is required</p>
+                            <p class="error" v-if="!$v.newItem.name.minLength">Name must have at least {{$v.newItem.name.$params.minLength.min}} letters.</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{ 'form-group--error': $v.newItem.price.$error }">
                             <label for="item_price">
                                 <span class="title">{{ $t('items.createPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input 
                                 id="item_price" 
-                                v-model.number.trim="newItem.price" 
+                                v-model.number.trim="$v.newItem.price.$model" 
                                 type="text" class="form-control"
                             >
+                            <p class="error" v-if="!$v.newItem.price.required">Field is required</p>
+                            <p class="error" v-if="!$v.newItem.price.between">Must be between {{$v.newItem.price.$params.between.min}} and {{$v.newItem.price.$params.between.max}}</p>
                         </div>
                         <div class="form-group">
                             <label class="typo__label">
@@ -84,9 +88,10 @@ export default {
                     title: this.$t('items.createPage.title')
                 }
             ],
+            submitStatus: null,
             newItem: {
-                name: null,
-                price: null,
+                name: '',
+                price: 0,
                 unit: {
                     value: {name: ''},
                     options: [
@@ -97,7 +102,7 @@ export default {
                 description: null,
                 submitStatus: null
             },
-            loading: false
+            loading: false,
         }
     },
     computed: {
@@ -110,26 +115,47 @@ export default {
             return name
         },
         addNewItem () {
-            this.loading = true
 
-            let allItemData = {
-                ...this.newItem,
-                url: this.makeURL,
-                addedOn: Date.now()
-            }
-            delete allItemData.submitStatus
-            
-            return addToCollection('items', allItemData).then(response => {
-                this.$router.push({
-                    name: "Items"
+            this.$v.$touch()
+
+            if (this.$v.$invalid) {
+                this.submitStatus = 'ERROR'
+                window.toastr.error('Please fill the form correctly.')
+            } else {
+                this.submitStatus = 'OK'
+
+                this.loading = true
+
+                let allItemData = {
+                    ...this.newItem,
+                    url: this.makeURL,
+                    addedOn: Date.now()
+                }
+                delete allItemData.submitStatus
+
+                return addToCollection('items', allItemData).then(response => {
+                    this.$router.push({
+                        name: "Items"
+                    })
+                    this.loading = false
+                    window.toastr.success(this.$t('items.createPage.form.successMsg'))
+                }).catch(err => {
+                    window.toastr.error(this.$t('items.createPage.form.errorMsg'))
                 })
-                this.loading = false
-                window.toastr.success(this.$t('items.createPage.form.successMsg'))
-            }).catch(err => {
-                window.toastr.error(this.$t('items.createPage.form.errorMsg'))
-            })
+            }
             
-            
+        }
+    },
+    validations: {
+        newItem: {
+            name: {
+                required,
+                minLength: minLength(2)
+            },
+            price: {
+                required,
+                between: between(1, 5000)
+            }
         }
     }
 }

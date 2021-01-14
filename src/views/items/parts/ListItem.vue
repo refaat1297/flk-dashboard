@@ -11,7 +11,7 @@
                 
                 <div class="item-unit">
                     <span class="d-block d-lg-none">{{ $t('items.listPage.unit') }}</span>
-                    {{ item.unit.value.name }}
+                    {{ item.unit.value.name === '' ? 'Not Selected' : item.unit.value.name }}
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-2">

@@ -4,28 +4,32 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-xl-6">
                     <form @submit.prevent="editItem()">
-                        <div class="form-group">
+                        <div class="form-group" :class="{ 'form-group--error': $v.newItem.name.$error }">
                             <label for="item_name">
                                 <span class="title">{{ $t('items.editPage.form.name') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input
                                 id="item_name"
-                                v-model.trim="newItem.name"
+                                v-model.trim="$v.newItem.name.$model"
                                 type="text"
                                 class="form-control"
                             >
+                            <p class="error" v-if="!$v.newItem.name.required">Field is required</p>
+                            <p class="error" v-if="!$v.newItem.name.minLength">Name must have at least {{$v.newItem.name.$params.minLength.min}} letters.</p>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" :class="{ 'form-group--error': $v.newItem.price.$error }">
                             <label for="item_price">
                                 <span class="title">{{ $t('items.editPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input
                                 id="item_price"
-                                v-model.number.trim="newItem.price"
+                                v-model.number.trim="$v.newItem.price.$model"
                                 type="text" class="form-control"
                             >
+                            <p class="error" v-if="!$v.newItem.price.required">Field is required</p>
+                            <p class="error" v-if="!$v.newItem.price.between">Must be between {{$v.newItem.price.$params.between.min}} and {{$v.newItem.price.$params.between.max}}</p>
                         </div>
                         <div class="form-group">
                             <label class="typo__label">
@@ -67,6 +71,7 @@
 import SaveIcon from "../../components/icons/SaveIcon";
 import db from '../../firebase/init'
 import {updateDocumnet} from '../../firebase/methods/firestore'
+import {between, minLength, required} from "vuelidate/lib/validators";
 export default {
     name: "EditItem",
     components: {SaveIcon},
@@ -85,7 +90,7 @@ export default {
             ],
             newItem: {
                 name: null,
-                price: null,
+                price: 0,
                 unit: {
                     value: {name: ''},
                     options: [
@@ -120,26 +125,48 @@ export default {
             return name
         },
         editItem () {
-            this.loading = true
 
-            let allItemData = {
-                ...this.newItem,
-                url: this.makeURL,
-                addedOn: Date.now()
-            }
-            delete allItemData.submitStatus
+            this.$v.$touch()
 
-            return updateDocumnet('items', allItemData.id,allItemData).then(response => {
-                this.$router.push({
-                    name: "Items"
+            if (this.$v.$invalid) {
+                this.submitStatus = 'ERROR'
+                window.toastr.error('Please fill the form correctly.')
+            } else {
+
+                this.loading = true
+
+                let allItemData = {
+                    ...this.newItem,
+                    url: this.makeURL,
+                    addedOn: Date.now()
+                }
+                delete allItemData.submitStatus
+
+                return updateDocumnet('items', allItemData.id,allItemData).then(response => {
+                    this.$router.push({
+                        name: "Items"
+                    })
+                    this.loading = false
+                    window.toastr.success(this.$t('items.editPage.form.successMsg'))
+                }).catch(err => {
+                    window.toastr.error(this.$t('items.editPage.form.errorMsg'))
                 })
-                this.loading = false
-                window.toastr.success(this.$t('items.editPage.form.successMsg'))
-            }).catch(err => {
-                window.toastr.error(this.$t('items.editPage.form.errorMsg'))
-            })
+                
+            }
 
 
+        }
+    },
+    validations: {
+        newItem: {
+            name: {
+                required,
+                minLength: minLength(2)
+            },
+            price: {
+                required,
+                between: between(1, 5000)
+            }
         }
     }
 }

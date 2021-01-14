@@ -9,27 +9,24 @@
         </div>
         <template v-else>
             <div class="items-list">
-                <div class="container-fluid">
-                    <div class="head d-none d-lg-block">
-                        <div class="row no-gutters">
-                            <div class="col-12 col-sm-6 col-md-3">
-                                <div class="item-name">{{ $t('items.listPage.name') }}</div>
-                            </div>
-                            <div class="col-6 col-sm-6 col-lg-3">
-                                <div class="item-unit">{{ $t('items.listPage.unit') }}</div>
-                            </div>
-                            <div class="col-6 col-sm-6 col-lg-2">
-                                <div class="item-price">{{ $t('items.listPage.price') }}</div>
-                            </div>
-                            <div class="col-6 col-sm-6 col-lg-3">
-                                <div class="item-added-on">{{ $t('items.listPage.addedOn') }}</div>
-                            </div>
-                            
+                <div class="head d-none d-lg-block">
+                    <div class="row no-gutters">
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="item-name">{{ $t('items.listPage.name') }}</div>
                         </div>
+                        <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="item-unit">{{ $t('items.listPage.unit') }}</div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-2">
+                            <div class="item-price">{{ $t('items.listPage.price') }}</div>
+                        </div>
+                        <div class="col-6 col-sm-6 col-lg-3">
+                            <div class="item-added-on">{{ $t('items.listPage.addedOn') }}</div>
+                        </div>
+                        
                     </div>
-                    
-                    <ListItem v-for="item in items" :key="item.id" :item="item" @deleteItem="deleteItem" />
                 </div>
+                <ListItem v-for="item in items" :key="item.id" :item="item" @deleteItem="deleteItem" />
             </div>
         </template>
     </base-layout>
@@ -79,7 +76,7 @@ export default {
         deleteItem (id) {
             return deleteFromCollection('items', id).then(() => {
                 this.items = this.items.filter(item => id !== item.id)
-                window.toastr.success("item deleted successfully")
+                window.toastr.success(this.$t('items.listPage.deleteMsg'))
             }).catch(err => window.toastr.error(err))
         }
     }
