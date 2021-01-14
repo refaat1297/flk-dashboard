@@ -15,8 +15,8 @@
                                 type="text"
                                 class="form-control"
                             >
-                            <p class="error" v-if="!$v.newItem.name.required">Field is required</p>
-                            <p class="error" v-if="!$v.newItem.name.minLength">Name must have at least {{$v.newItem.name.$params.minLength.min}} letters.</p>
+                            <p class="error" v-if="!$v.newItem.name.required">{{ $t('items.editPage.form.nameMessages.required') }}</p>
+                            <p class="error" v-if="!$v.newItem.name.minLength"> {{ $t('items.editPage.form.nameMessages.minLength', {minLength: $v.newItem.name.$params.minLength.min}) }} </p>
                         </div>
                         <div class="form-group" :class="{ 'form-group--error': $v.newItem.price.$error }">
                             <label for="item_price">

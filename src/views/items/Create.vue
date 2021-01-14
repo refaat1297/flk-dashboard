@@ -15,8 +15,8 @@
                                 type="text" 
                                 class="form-control" 
                             >
-                            <p class="error" v-if="!$v.newItem.name.required">Field is required</p>
-                            <p class="error" v-if="!$v.newItem.name.minLength">Name must have at least {{$v.newItem.name.$params.minLength.min}} letters.</p>
+                            <p class="error" v-if="!$v.newItem.name.required">{{ $t('items.createPage.form.nameMessages.required') }}</p>
+                            <p class="error" v-if="!$v.newItem.name.minLength"> {{ $t('items.createPage.form.nameMessages.minLength', {minLength: $v.newItem.name.$params.minLength.min}) }} </p>
                         </div>
                         <div class="form-group" :class="{ 'form-group--error': $v.newItem.price.$error }">
                             <label for="item_price">
@@ -28,8 +28,8 @@
                                 v-model.number.trim="$v.newItem.price.$model" 
                                 type="text" class="form-control"
                             >
-                            <p class="error" v-if="!$v.newItem.price.required">Field is required</p>
-                            <p class="error" v-if="!$v.newItem.price.between">Must be between {{$v.newItem.price.$params.between.min}} and {{$v.newItem.price.$params.between.max}}</p>
+                            <p class="error" v-if="!$v.newItem.price.required">{{ $t('items.createPage.form.priceMessages.required') }}</p>
+                            <p class="error" v-if="!$v.newItem.price.between">{{ $t('items.createPage.form.priceMessages.between', {min: $v.newItem.price.$params.between.min, max: $v.newItem.price.$params.between.max}) }}</p>
                         </div>
                         <div class="form-group">
                             <label class="typo__label">

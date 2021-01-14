@@ -1,4 +1,5 @@
 .items-list {
+    padding-bottom: 1rem;
     
     .head {
         padding: 1rem;
@@ -55,7 +56,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-color: rgba($blue, .3);
+                background-color: rgba($blue, .2);
                 color: $blue;
                 font-size: .7rem;
                 text-transform: capitalize;
@@ -75,6 +76,7 @@
                 overflow: hidden;
                 font-size: 1.1rem;
                 color: $blue;
+                text-transform: capitalize;
                 font-weight: 600;
                 
                 @media (max-width: 991px) {
@@ -104,7 +106,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-color: rgba($blue, .3);
+                background-color: rgba($blue, .2);
                 color: $blue;
                 font-size: .7rem;
                 text-transform: capitalize;
@@ -139,7 +141,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-color: rgba($blue, .3);
+                background-color: rgba($blue, .2);
                 color: $blue;
                 font-size: .7rem;
                 text-transform: capitalize;
@@ -171,7 +173,7 @@
                 position: absolute;
                 top: 0;
                 left: 0;
-                background-color: rgba($blue, .3);
+                background-color: rgba($blue, .2);
                 color: $blue;
                 font-size: .7rem;
                 text-transform: capitalize;

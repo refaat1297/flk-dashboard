@@ -36,7 +36,15 @@
             "title": "new item",
             "form": {
                 "name": "name",
+                "nameMessages": {
+                    "required": "name is required..",
+                    "minLength": "name must have at least {minLength} letters.."
+                },
                 "price": "price",
+                "priceMessages": {
+                    "required": "price is required..",
+                    "between": "price must be between {min} and {max}.."
+                },
                 "unit": "unit",
                 "select": "select unit",
                 "description": "description",
@@ -49,7 +57,15 @@
             "title": "edit item",
             "form": {
                 "name": "name",
+                "nameMessages": {
+                    "required": "name is required..",
+                    "minLength": "name must have at least {minLength} letters.."
+                },
                 "price": "price",
+                "priceMessages": {
+                    "required": "price is required",
+                    "between": "price ust be between {min} and {max}"
+                },
                 "unit": "unit",
                 "select": "select unit",
                 "description": "description",

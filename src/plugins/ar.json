@@ -36,7 +36,15 @@
             "title": "منتج جديد",
             "form": {
                 "name": "الإسم",
+                "nameMessages": {
+                    "required": "الإسم مطلوب..",
+                    "minLength": "يجب أن يكون الإسم علي الأقل {minLength} حرف / حروف.."
+                },
                 "price": "السعر",
+                "priceMessages": {
+                    "required": "السعر مطلوب..",
+                    "between": "يجب أن يكون السعر ما بين {min} و {max}.."
+                },
                 "unit": "الوحدة",
                 "select": "إختر وحدة",
                 "description": "الوصف",
@@ -49,7 +57,15 @@
             "title": "تعديل منتج",
             "form": {
                 "name": "الإسم",
+                "nameMessages": {
+                    "required": "الإسم مطلوب..",
+                    "minLength": "يجب أن يكون الإسم علي الأقل {minLength} حرف / حروف.."
+                },
                 "price": "السعر",
+                "priceMessages": {
+                    "required": "السعر مطلوب..",
+                    "between": "يجب أن يكون السعر ما بين {min} و {max}.."
+                },
                 "unit": "الوحدة",
                 "select": "إختر وحدة",
                 "description": "الوصف",
