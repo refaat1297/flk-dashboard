@@ -69,8 +69,8 @@
 
 <script>
 import SaveIcon from "../../components/icons/SaveIcon";
-import {addToCollection} from "../../firebase/methods/firestore";
 import {required, minLength, maxLength, between} from 'vuelidate/lib/validators'
+import axios from "axios";
 
 export default {
     name: "CreateNewItem",
@@ -107,20 +107,20 @@ export default {
     },
     computed: {
         makeURL () {
-            return this.newItem.name.split(' ').join('-')
+            return this.newItem.name.split(' ').join('-').toLowerCase()
         }
     },
     methods: {
         nameWithLang ({ name }) {
             return name
         },
-        addNewItem () {
+        async addNewItem () {
 
             this.$v.$touch()
 
             if (this.$v.$invalid) {
                 this.submitStatus = 'ERROR'
-                window.toastr.error('Please fill the form correctly.')
+                window.toastr.error(this.$t('items.createPage.form.fillInputs'))
             } else {
                 this.submitStatus = 'OK'
 
@@ -128,20 +128,24 @@ export default {
 
                 let allItemData = {
                     ...this.newItem,
-                    url: this.makeURL,
+                    unit: this.newItem.unit.value.name,
+                    slug: this.makeURL,
                     addedOn: Date.now()
                 }
                 delete allItemData.submitStatus
+                
+                await axios.post('/items.json', allItemData)
+                    .then(res => {
+                        this.$router.push({
+                            name: "Items"
+                        })
 
-                return addToCollection('items', allItemData).then(response => {
-                    this.$router.push({
-                        name: "Items"
+                        this.loading = false
+
+                        window.toastr.success(this.$t('items.createPage.form.successMsg'))
+                    }).catch(err => {
+                        window.toastr.error(this.$t('items.createPage.form.errorMsg'))
                     })
-                    this.loading = false
-                    window.toastr.success(this.$t('items.createPage.form.successMsg'))
-                }).catch(err => {
-                    window.toastr.error(this.$t('items.createPage.form.errorMsg'))
-                })
             }
             
         }

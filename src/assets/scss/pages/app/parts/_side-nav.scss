@@ -19,12 +19,22 @@
         z-index: 7;
         width: 14rem;
         left: -14rem;
+        
+        [dir=rtl] & {
+            left: auto;
+            right: -14rem;
+        }
     }
     
     &.show-small-nav {
         @media (max-width: 767px) {
             //display: none;
             left: 0;
+            
+            [dir=rtl] & {
+                left: auto;
+                right: 0;
+            }
         }
     }
     

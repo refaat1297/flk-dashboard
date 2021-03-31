@@ -50,6 +50,7 @@
                 "description": "description",
                 "save": "save item",
                 "successMsg": "item added successfully..",
+                "fillInputs": "Please fill the form correctly.",
                 "errorMsg": "an error occurred"
             }
         },
@@ -71,6 +72,7 @@
                 "description": "description",
                 "save": "update item",
                 "successMsg": "item edited successfully..",
+                "fillInputs": "Please fill the form correctly.",
                 "errorMsg": "an error occurred"
             }
         }

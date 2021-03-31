@@ -71,7 +71,7 @@ const routes = [
         component: CreateNewItem
     },
     {
-        path: "/items/:url/edit",
+        path: "/items/:slug/edit",
         name: "EditItem",
         component: EditItem
     },

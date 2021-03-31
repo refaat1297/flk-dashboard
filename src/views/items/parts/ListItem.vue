@@ -4,14 +4,14 @@
             <div class="col-6 col-sm-6 col-lg-3">
                 <div class="item-name">
                     <span class="d-block d-lg-none">{{ $t('items.listPage.name') }}</span>
-                    <router-link :to="'/items/' + item.url + '/edit'" class="text-decoration-none">{{ item.name }}</router-link>
+                    <router-link :to="'/items/' + item.slug + '/edit'" class="text-decoration-none">{{ item.name }}</router-link>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-3">
                 
                 <div class="item-unit">
                     <span class="d-block d-lg-none">{{ $t('items.listPage.unit') }}</span>
-                    {{ item.unit.value.name === '' ? 'Not Selected' : item.unit.value.name }}
+                    {{ item.unit === '' ? 'Not Selected' : item.unit }}
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-lg-2">

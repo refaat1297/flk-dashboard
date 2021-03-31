@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import {getCollection, deleteFromCollection} from "../../firebase/methods/firestore";
 import ListItem from "./parts/ListItem";
+import axios from "axios";
 
 export default {
     name: "Items",
@@ -56,28 +56,33 @@ export default {
             loadingItems: false
         }
     },
-    created() {
+    async created() {
         this.loadingItems = true
-        getCollection('items').then(snapshot => {
-            let items = snapshot.docs.map(doc => {
-                return Object.assign({
-                    id: doc.id,
-                    ...doc.data()
-                })
-            })
 
-            this.items = items
-            this.loadingItems = false
-        }).catch(err => {
-            window.toastr.error(err)
-        })
+        await axios.get('/items.json')
+            .then(res => {
+                let items = Object.entries(res.data).map(item => {
+                    return Object.assign({}, item[1], {
+                        id: item[0]
+                    })
+                })
+                
+                this.items = items
+                
+                this.loadingItems = false
+            })
+            .catch(error => {
+                window.toastr.error(error)
+            })
     },
     methods: {
-        deleteItem (id) {
-            return deleteFromCollection('items', id).then(() => {
-                this.items = this.items.filter(item => id !== item.id)
-                window.toastr.success(this.$t('items.listPage.deleteMsg'))
-            }).catch(err => window.toastr.error(err))
+        async deleteItem (id) {
+            await axios.delete(`/items/${id}.json`)
+                .then(res => {
+                    this.items = this.items.filter(item => id !== item.id)
+                    window.toastr.success(this.$t('items.listPage.deleteMsg'))
+                })
+                .catch(err => window.toastr.error(err))
         }
     }
 }

@@ -4,45 +4,46 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-xl-6">
                     <form @submit.prevent="editItem()">
-                        <div class="form-group" :class="{ 'form-group--error': $v.newItem.name.$error }">
+                        <div class="form-group" :class="{ 'form-group--error': $v.selectedItem.name.$error }">
                             <label for="item_name">
                                 <span class="title">{{ $t('items.editPage.form.name') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input
                                 id="item_name"
-                                v-model.trim="$v.newItem.name.$model"
+                                v-model.trim="$v.selectedItem.name.$model"
                                 type="text"
                                 class="form-control"
                             >
-                            <p class="error" v-if="!$v.newItem.name.required">{{ $t('items.editPage.form.nameMessages.required') }}</p>
-                            <p class="error" v-if="!$v.newItem.name.minLength"> {{ $t('items.editPage.form.nameMessages.minLength', {minLength: $v.newItem.name.$params.minLength.min}) }} </p>
+                            <p class="error" v-if="!$v.selectedItem.name.required">{{ $t('items.editPage.form.nameMessages.required') }}</p>
+                            <p class="error" v-if="!$v.selectedItem.name.minLength"> {{ $t('items.editPage.form.nameMessages.minLength', {minLength: $v.selectedItem.name.$params.minLength.min}) }} </p>
                         </div>
-                        <div class="form-group" :class="{ 'form-group--error': $v.newItem.price.$error }">
+                        <div class="form-group" :class="{ 'form-group--error': $v.selectedItem.price.$error }">
                             <label for="item_price">
                                 <span class="title">{{ $t('items.editPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
                             <input
                                 id="item_price"
-                                v-model.number.trim="$v.newItem.price.$model"
+                                v-model.number.trim="$v.selectedItem.price.$model"
                                 type="text" class="form-control"
                             >
-                            <p class="error" v-if="!$v.newItem.price.required">{{ $t('items.createPage.form.priceMessages.required') }}</p>
-                            <p class="error" v-if="!$v.newItem.price.between">{{ $t('items.createPage.form.priceMessages.between', {min: $v.newItem.price.$params.between.min, max: $v.newItem.price.$params.between.max}) }}</p>
+                            <p class="error" v-if="!$v.selectedItem.price.required">{{ $t('items.createPage.form.priceMessages.required') }}</p>
+                            <p class="error" v-if="!$v.selectedItem.price.between">{{ $t('items.createPage.form.priceMessages.between', {min: $v.selectedItem.price.$params.between.min, max: $v.selectedItem.price.$params.between.max}) }}</p>
                         </div>
                         <div class="form-group">
                             <label class="typo__label">
                                 <span class="title">{{ $t('items.editPage.form.unit') }}</span>
                             </label>
+<!--                            :custom-label="nameWithLang"-->
+<!--                            :allow-empty="false"-->
+<!--                            label="name"-->
+<!--                            track-by="name"-->
                             <multiselect
-                                v-model="newItem.unit.value"
-                                :options="newItem.unit.options"
-                                :custom-label="nameWithLang"
-                                :allow-empty="false"
+                                v-model="selectedItem.unit"
+                                :options="units"
+                                :searchable="false" :close-on-select="true" :show-labels="true"
                                 :placeholder="$t('items.editPage.form.select')"
-                                label="name"
-                                track-by="name"
                             />
                             <!--                            <input id="item_unit" type="text" class="form-control">-->
                         </div>
@@ -50,7 +51,7 @@
                             <label for="item_description">
                                 <span class="title">{{ $t('items.editPage.form.description') }}</span>
                             </label>
-                            <textarea id="item_description" v-model.trim="newItem.description" type="text" class="form-control" rows="3"></textarea>
+                            <textarea id="item_description" v-model.trim="selectedItem.description" type="text" class="form-control" rows="3"></textarea>
                         </div>
 
                         <button class="app-btn">
@@ -69,9 +70,9 @@
 
 <script>
 import SaveIcon from "../../components/icons/SaveIcon";
-import db from '../../firebase/init'
-import {updateDocumnet} from '../../firebase/methods/firestore'
 import {between, minLength, required} from "vuelidate/lib/validators";
+import axios from "axios";
+
 export default {
     name: "EditItem",
     components: {SaveIcon},
@@ -88,69 +89,68 @@ export default {
                     title: this.$t('items.editPage.title')
                 }
             ],
-            newItem: {
-                name: null,
-                price: 0,
-                unit: {
-                    value: {name: ''},
-                    options: [
-                        {name: 'box'},
-                        {name: 'cm'}
-                    ]
-                },
-                description: null,
-            },
+            selectedItem: {},
+            units: ['cm', 'box'],
             loading: false
         }
     },
-    mounted() {
-        
-        db.collection("items").where("url", "==", this.$route.params.url)
-            .get()
-            .then((querySnapshot) => {
-                this.newItem = querySnapshot.docs[0].data()
-                this.newItem.id = querySnapshot.docs[0].id
-            })
-            .catch((error) => {
+    async mounted() {
+        await axios.get(`/items.json?orderBy="slug"&equalTo="${this.$route.params.slug}"`)
+            .then(res => {
+                let selectedItem = Object.entries(res.data).map(item => {
+                    return Object.assign({}, item[1], {
+                        id: item[0]
+                    })
+                })[0]
+                
+                this.selectedItem = selectedItem
+            }).catch((error) => {
                 console.log("Error getting documents: ", error);
-            });  
+            });
     },
     computed: {
         makeURL () {
-            return this.newItem.name.split(' ').join('-')
+            return this.selectedItem.name.split(' ').join('-').toLowerCase()
         }
     },
     methods: {
         nameWithLang ({ name }) {
             return name
         },
-        editItem () {
+        async editItem () {
 
             this.$v.$touch()
 
             if (this.$v.$invalid) {
                 this.submitStatus = 'ERROR'
-                window.toastr.error('Please fill the form correctly.')
+                window.toastr.error(this.$t('items.editPage.form.fillInputs'))
             } else {
 
                 this.loading = true
 
+                let id = this.selectedItem.id
+                
                 let allItemData = {
-                    ...this.newItem,
-                    url: this.makeURL,
+                    ...this.selectedItem,
+                    slug: this.makeURL,
                     addedOn: Date.now()
                 }
                 delete allItemData.submitStatus
+                delete allItemData.id
 
-                return updateDocumnet('items', allItemData.id,allItemData).then(response => {
-                    this.$router.push({
-                        name: "Items"
+                
+                await axios.patch(`/items/${id}.json`, allItemData)
+                    .then(res => {
+                        this.$router.push({
+                            name: "Items"
+                        })
+
+                        this.loading = false
+
+                        window.toastr.success(this.$t('items.editPage.form.successMsg'))
+                    }).catch(err => {
+                        window.toastr.error(this.$t('items.editPage.form.errorMsg'))
                     })
-                    this.loading = false
-                    window.toastr.success(this.$t('items.editPage.form.successMsg'))
-                }).catch(err => {
-                    window.toastr.error(this.$t('items.editPage.form.errorMsg'))
-                })
                 
             }
 
@@ -158,7 +158,7 @@ export default {
         }
     },
     validations: {
-        newItem: {
+        selectedItem: {
             name: {
                 required,
                 minLength: minLength(2)

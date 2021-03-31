@@ -13,6 +13,17 @@ Vue.use(Vuelidate)
 /* ------- vue validate ------- */
 
 
+/* ------- axios ------- */
+
+import axios from "axios";
+axios.defaults.baseURL = 'https://flk-dashboard-default-rtdb.firebaseio.com'
+axios.defaults.headers['Access-Control-Allow-Origin'] = '*'
+
+/* ------- axios ------- */
+
+
+
+
 /* ------- services ------- */
 
 import Ls from './services/ls'
