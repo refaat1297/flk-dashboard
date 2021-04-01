@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <TheTopHeader @openNav="showSmallNav = !showSmallNav" />
+        <TheTopHeader @openNav="showSmallNav = !showSmallNav" :showSmallNav="showSmallNav"  />
         
         <div class="page-content">
             <TheSideNav :lang="lang" @changeLang="changeLang()" :showSmallNav="showSmallNav" />

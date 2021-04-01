@@ -9,55 +9,71 @@
                                 <span class="title">{{ $t('items.createPage.form.name') }}</span>
                                 <span class="required">*</span>
                             </label>
-                            <input 
-                                id="item_name" 
-                                v-model.trim="$v.newItem.name.$model" 
-                                type="text" 
-                                class="form-control" 
+                            <input
+                                id="item_name"
+                                v-model.trim="$v.newItem.name.$model"
+                                type="text"
+                                class="form-control"
                             >
-                            <p class="error" v-if="!$v.newItem.name.required">{{ $t('items.createPage.form.nameMessages.required') }}</p>
-                            <p class="error" v-if="!$v.newItem.name.minLength"> {{ $t('items.createPage.form.nameMessages.minLength', {minLength: $v.newItem.name.$params.minLength.min}) }} </p>
+                            <p class="error" v-if="!$v.newItem.name.required">
+                                {{ $t('items.createPage.form.nameMessages.required') }}</p>
+                            <p class="error" v-if="!$v.newItem.name.minLength"> {{
+                                    $t('items.createPage.form.nameMessages.minLength', {minLength: $v.newItem.name.$params.minLength.min})
+                                }} </p>
                         </div>
                         <div class="form-group" :class="{ 'form-group--error': $v.newItem.price.$error }">
                             <label for="item_price">
                                 <span class="title">{{ $t('items.createPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
-                            <input 
-                                id="item_price" 
-                                v-model.number.trim="$v.newItem.price.$model" 
-                                type="text" class="form-control"
-                            >
-                            <p class="error" v-if="!$v.newItem.price.required">{{ $t('items.createPage.form.priceMessages.required') }}</p>
-                            <p class="error" v-if="!$v.newItem.price.between">{{ $t('items.createPage.form.priceMessages.between', {min: $v.newItem.price.$params.between.min, max: $v.newItem.price.$params.between.max}) }}</p>
+                            <!--                            <input -->
+                            <!--                                id="item_price" -->
+                            <!--                                v-model.number.trim="$v.newItem.price.$model" -->
+                            <!--                                type="text" class="form-control"-->
+                            <!--                            >-->
+                            <money id="item_price" v-model="$v.newItem.price.$model"
+                                   v-bind="money"
+                                   class="form-control"></money>
+                            <p class="error" v-if="!$v.newItem.price.required">
+                                {{ $t('items.createPage.form.priceMessages.required') }}</p>
+                            <p class="error" v-if="!$v.newItem.price.between">{{
+                                    $t('items.createPage.form.priceMessages.between', {
+                                        min: $v.newItem.price.$params.between.min,
+                                        max: $v.newItem.price.$params.between.max
+                                    })
+                                }}</p>
                         </div>
                         <div class="form-group">
                             <label class="typo__label">
                                 <span class="title">{{ $t('items.createPage.form.unit') }}</span>
                             </label>
-                            <multiselect 
-                                v-model="newItem.unit.value" 
-                                :options="newItem.unit.options"
-                                :custom-label="nameWithLang"
-                                :allow-empty="false"
-                                :placeholder="$t('items.createPage.form.select')" 
-                                label="name" 
-                                track-by="name"
+                            <multiselect
+                                v-model="newItem.unit"
+                                :options="unitsNames"
+                                :searchable="false"
+                                :close-on-select="true"
+                                :show-labels="true"
+                                :placeholder="$t('items.createPage.form.select')"
                             />
-<!--                            <input id="item_unit" type="text" class="form-control">-->
+<!--                            :custom-label="nameWithLang"-->
+<!--                            :allow-empty="false"-->
+<!--                            label="name"-->
+<!--                            track-by="name"-->
+                            <!--                            <input id="item_unit" type="text" class="form-control">-->
                         </div>
                         <div class="form-group">
                             <label for="item_description">
                                 <span class="title">{{ $t('items.createPage.form.description') }}</span>
                             </label>
-                            <textarea id="item_description" v-model.trim="newItem.description" type="text" class="form-control" rows="3"></textarea>
+                            <textarea id="item_description" v-model.trim="newItem.description" type="text"
+                                      class="form-control" rows="3"></textarea>
                         </div>
-                        
+
                         <button class="app-btn">
                             <div class="spinner-border text-light" role="status" v-if="loading">
                                 <span class="sr-only">Loading...</span>
                             </div>
-                            <SaveIcon v-else />
+                            <SaveIcon v-else/>
                             <span>{{ $t('items.createPage.form.save') }}</span>
                         </button>
                     </form>
@@ -71,11 +87,13 @@
 import SaveIcon from "../../components/icons/SaveIcon";
 import {required, minLength, maxLength, between} from 'vuelidate/lib/validators'
 import axios from "axios";
+import {Money} from 'v-money'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
     name: "CreateNewItem",
-    components: {SaveIcon},
-    data () {
+    components: {SaveIcon, Money},
+    data() {
         return {
             pageTitle: this.$t('items.createPage.title'),
             breadcrumbLinks: [
@@ -92,29 +110,33 @@ export default {
             newItem: {
                 name: '',
                 price: 0,
-                unit: {
-                    value: {name: ''},
-                    options: [
-                        {name: 'box'},
-                        {name: 'cm'}
-                    ]
-                },
+                unit: '',
                 description: null,
                 submitStatus: null
             },
             loading: false,
+            money: {
+                decimal: ',',
+                thousands: '.',
+                prefix: '$ ',
+                // suffix: ' #',
+                precision: 2,
+                masked: false
+            }
         }
     },
     computed: {
-        makeURL () {
+        ...mapGetters('units', ['unitsNames']),
+        makeURL() {
             return this.newItem.name.split(' ').join('-').toLowerCase()
         }
     },
     methods: {
-        nameWithLang ({ name }) {
+        ...mapActions('units', ['getUnits']),
+        nameWithLang({name}) {
             return name
         },
-        async addNewItem () {
+        async addNewItem() {
 
             this.$v.$touch()
 
@@ -128,12 +150,12 @@ export default {
 
                 let allItemData = {
                     ...this.newItem,
-                    unit: this.newItem.unit.value.name,
+                    unit: this.newItem.unit,
                     slug: this.makeURL,
                     addedOn: Date.now()
                 }
                 delete allItemData.submitStatus
-                
+
                 await axios.post('/items.json', allItemData)
                     .then(res => {
                         this.$router.push({
@@ -147,8 +169,11 @@ export default {
                         window.toastr.error(this.$t('items.createPage.form.errorMsg'))
                     })
             }
-            
+
         }
+    },
+    async created() {
+        await this.getUnits()
     },
     validations: {
         newItem: {

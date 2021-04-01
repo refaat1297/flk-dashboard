@@ -4,7 +4,7 @@
             <router-link to="/" class="text-decoration-none">flk dashboard</router-link>
         </div>
         <div class="header-details">
-            <button @click="openNav()" class="btn btn-primary d-block d-md-none">nav</button>
+            <button @click="openNav()" class="btn btn-primary d-block d-md-none">{{ showSmallNav }}</button>
         </div>
     </div>
 </template>
@@ -12,6 +12,11 @@
 <script>
 export default {
     name: "TheTopHeader",
+    props: {
+        showSmallNav: {
+            type: Boolean
+        }  
+    },
     methods: {
         openNav () {
             this.$emit('openNav')

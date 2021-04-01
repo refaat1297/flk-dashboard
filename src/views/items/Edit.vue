@@ -23,11 +23,15 @@
                                 <span class="title">{{ $t('items.editPage.form.price') }}</span>
                                 <span class="required">*</span>
                             </label>
-                            <input
-                                id="item_price"
-                                v-model.number.trim="$v.selectedItem.price.$model"
-                                type="text" class="form-control"
-                            >
+<!--                            <input-->
+<!--                                id="item_price"-->
+<!--                                v-model.number.trim="$v.selectedItem.price.$model"-->
+<!--                                type="text" class="form-control"-->
+<!--                            >-->
+                            <money id="item_price" v-model="$v.selectedItem.price.$model"
+                                   v-bind="money"
+                                   class="form-control"></money>
+                            
                             <p class="error" v-if="!$v.selectedItem.price.required">{{ $t('items.createPage.form.priceMessages.required') }}</p>
                             <p class="error" v-if="!$v.selectedItem.price.between">{{ $t('items.createPage.form.priceMessages.between', {min: $v.selectedItem.price.$params.between.min, max: $v.selectedItem.price.$params.between.max}) }}</p>
                         </div>
@@ -39,10 +43,13 @@
 <!--                            :allow-empty="false"-->
 <!--                            label="name"-->
 <!--                            track-by="name"-->
+                            
                             <multiselect
                                 v-model="selectedItem.unit"
-                                :options="units"
-                                :searchable="false" :close-on-select="true" :show-labels="true"
+                                :options="unitsNames"
+                                :searchable="false" 
+                                :close-on-select="true" 
+                                :show-labels="true"
                                 :placeholder="$t('items.editPage.form.select')"
                             />
                             <!--                            <input id="item_unit" type="text" class="form-control">-->
@@ -72,10 +79,12 @@
 import SaveIcon from "../../components/icons/SaveIcon";
 import {between, minLength, required} from "vuelidate/lib/validators";
 import axios from "axios";
+import {Money} from 'v-money'
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
     name: "EditItem",
-    components: {SaveIcon},
+    components: {SaveIcon, Money},
     data () {
         return {
             pageTitle: this.$t('items.editPage.title'),
@@ -90,8 +99,15 @@ export default {
                 }
             ],
             selectedItem: {},
-            units: ['cm', 'box'],
-            loading: false
+            loading: false,
+            money: {
+                decimal: ',',
+                thousands: '.',
+                prefix: '$ ',
+                // suffix: ' #',
+                precision: 2,
+                masked: false
+            }
         }
     },
     async mounted() {
@@ -108,12 +124,17 @@ export default {
                 console.log("Error getting documents: ", error);
             });
     },
+    async created() {
+        await this.getUnits()
+    },
     computed: {
+        ...mapGetters('units', ['unitsNames']),
         makeURL () {
             return this.selectedItem.name.split(' ').join('-').toLowerCase()
         }
     },
     methods: {
+        ...mapActions('units', ['getUnits']),
         nameWithLang ({ name }) {
             return name
         },

@@ -32,7 +32,7 @@
                 </div>
                 <ul class="list-unstyled options-list" :class="{'show-options-list': showList}">
                     <li>
-                        <router-link class="text-decoration-none list-item-content" :to="'/items/' + item.url + '/edit'">
+                        <router-link class="text-decoration-none list-item-content" :to="'/items/' + item.slug + '/edit'">
                             <EditIcon />
                             <span>{{ $t('items.listPage.editBtn') }}</span>
                         </router-link>
